@@ -12,17 +12,27 @@ def converter():
 
         if tipo == "Comprimento":
             # estamos utilizando o metro como base
-            fatores = {
-                "Metro": 1,
-                "Quilômetro": 1000,
-                "Centímetro": 0.01,
-                "Milímetro": 0.001
+            if unidade == "Metros":
+                c = valor 
+            elif unidade == "Polegadas":
+                c = valor * 0.0254
+            elif unidade == "Jardas":
+                c = valor * 0.9144
+            elif unidade == "Pés":
+                c = valor * 0.3048
+            elif unidade == "Milhas":
+                c = valor * 1609.34
+
+            conversoes = {
+                "Metros": c,
+                "Polegadas": c / 0.0254,
+                "Jardas": c / 0.9144,
+                "Pés": c / 0.3048,
+                "Milhas": c / 1609.34
             }
 
-            valor_metros = valor * fatores[unidade]
-
-            for nome, fator in fatores.items():
-                resultado.insert (tk.END, f"{nome}: {valor_metros / fator:.4f}\n")
+            for nome, valor_convertido in conversoes.items():
+                resultado.insert (tk.END, f"{nome}: {valor_convertido:.4f}\n")
 
 
         elif tipo == "Temperatura":
@@ -44,18 +54,25 @@ def converter():
 
 
         elif tipo == "Massa":
-            # estamos utilizando grama como base
-            fatores = {
-                "Grama": 1,
-                "Quilograma": 1000,
-                "Miligrama": 0.001,
-                "Tonelada": 1000000
+            # estamos utilizando quilograma como base
+            if unidade == "Quilograma":
+                c = valor
+            elif unidade == "Libra":
+                c = valor * 0.4536
+            elif unidade == "Onça":
+                c = valor * 0.02835
+            elif unidade == "Pedra":
+                c = valor * 6.35
+            
+            conversoes = {
+                "Quilograma": c,
+                "Libra": c / 0.4536,
+                "Onça": c / 0.02835,
+                "Pedra": c / 6.35
             }
 
-            valor_gramas = valor * fatores[unidade]
-
-            for nome, fator in fatores.items():
-                resultado.insert (tk.END, f"{nome}: {valor_gramas / fator:.4f}\n")
+            for nome, valor_convertido in conversoes.items():
+                resultado.insert(tk.END, f"{nome}: {valor_convertido:.4f}\n")
 
         
         elif tipo == "Tempo":
@@ -81,9 +98,9 @@ def atualizar_unidades(event=None):
     tipo = escolha_tipo.get()
 
     unidades = {
-        "Comprimento": ["Metro", "Quilômetro", "Centímetro", "Milímetro"],
+        "Comprimento": ["Metros", "Polegadas", "Jardas", "Pés", "Milhas"],
         "Temperatura": ["Celsius", "Fahrenheit", "Kelvin"],
-        "Massa": ["Grama", "Quilograma", "Miligrama", "Tonelada"],
+        "Massa": ["Quilograma", "Libra", "Onça", "Pedra"],
         "Tempo": ["Segundo", "Minuto", "Hora", "Dia"]
     }
 
