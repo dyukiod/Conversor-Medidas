@@ -3,6 +3,7 @@ from tkinter import ttk, messagebox
 
 
 def converter():
+    # realiza o cálculo de conversões entre os tipos de medidas
     try:
         valor = float(entrada_valor.get())
         tipo = escolha_tipo.get()
@@ -33,7 +34,7 @@ def converter():
 
             for nome, valor_convertido in conversoes.items():
                 resultado.insert (tk.END, f"{nome}: {valor_convertido:.4f}\n")
-
+            # percorre todas as conversões e escreve cada uma na caixa de resultados
 
         elif tipo == "Temperatura":
             if unidade == "Celsius":
@@ -94,6 +95,7 @@ def converter():
 
 
 def atualizar_unidades(event=None):
+    # Atualiza as unidades disponíveis quando o usuário altera o tipo de medida
     tipo = escolha_tipo.get()
 
     unidades = {
@@ -122,9 +124,11 @@ escolha_tipo = ttk.Combobox(
     values = ["Comprimento", "Temperatura", "Massa", "Tempo"],
     state = "readonly"
 )
+# Com o state = "readonly" o usuário só pode escolher uma das opções da lista, não pode digitar.
 escolha_tipo.pack(pady=5)
 escolha_tipo.current(0)
 escolha_tipo.bind("<<ComboboxSelected>>", atualizar_unidades)
+# Quando o usuário mudar a opção na caixinha, chama a função atualizar_unidades()
                   
 tk.Label(janela, text="Escolha a unidade original:").pack(pady=5)
 escolha_unidade = ttk.Combobox(janela, state="readonly")
