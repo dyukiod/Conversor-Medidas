@@ -3,16 +3,16 @@ from tkinter import ttk, messagebox
 
 
 def converter():
-    # realiza o cálculo de conversões entre os tipos de medidas
+    # Realiza o cálculo de conversões entre os tipos de medidas
     try:
         valor = float(entrada_valor.get())
         tipo = escolha_tipo.get()
         unidade = escolha_unidade.get()
 
-        resultado.delete("1.0", tk.END) # apaga o conteúdo antes de mostrar uma nova conversão
+        resultado.delete("1.0", tk.END) # Apaga o conteúdo antes de mostrar uma nova conversão
 
         if tipo == "Comprimento":
-            # estamos utilizando o metro como base
+            # Estamos utilizando o metro como base
             if unidade == "Metros":
                 c = valor 
             elif unidade == "Polegadas":
@@ -34,7 +34,7 @@ def converter():
 
             for nome, valor_convertido in conversoes.items():
                 resultado.insert (tk.END, f"{nome}: {valor_convertido:.4f}\n")
-            # percorre todas as conversões e escreve cada uma na caixa de resultados
+            # Percorre todas as conversões e escreve cada uma na caixa de resultados
 
         elif tipo == "Temperatura":
             if unidade == "Celsius":
@@ -55,7 +55,7 @@ def converter():
 
 
         elif tipo == "Massa":
-            # estamos utilizando quilograma como base
+            # Estamos utilizando quilograma como base
             if unidade == "Quilograma":
                 c = valor
             elif unidade == "Libra":
@@ -77,7 +77,7 @@ def converter():
 
         
         elif tipo == "Tempo":
-            # estamos utilizando o segundo como base
+            # Estamos utilizando o segundo como base
             fatores = {
                 "Segundo": 1,
                 "Minuto": 60,
