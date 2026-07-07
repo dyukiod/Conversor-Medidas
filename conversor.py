@@ -89,9 +89,8 @@ def converter():
             for nome, fator in fatores.items():
                 resultado.insert (tk.END, f"{nome}: {valor_segundos / fator:.4f}\n")
     
-    
     except ValueError:
-        messagebox.showerror("Erro", "DIgite um número válido.")
+        messagebox.showerror("Erro", "Digite um número válido.")
 
 
 def atualizar_unidades(event=None):
@@ -121,14 +120,14 @@ tk.Label(janela, text="Escolha o tipo de medida: ").pack(pady=5)
 escolha_tipo = ttk.Combobox(
     janela,
     values = ["Comprimento", "Temperatura", "Massa", "Tempo"],
-    state = "readyonly"
+    state = "readonly"
 )
 escolha_tipo.pack(pady=5)
 escolha_tipo.current(0)
 escolha_tipo.bind("<<ComboboxSelected>>", atualizar_unidades)
                   
 tk.Label(janela, text="Escolha a unidade original:").pack(pady=5)
-escolha_unidade = ttk.Combobox(janela, state="readyonly")
+escolha_unidade = ttk.Combobox(janela, state="readonly")
 escolha_unidade.pack(pady=5)
 
 botao = tk.Button(janela, text="Converter", command=converter)
